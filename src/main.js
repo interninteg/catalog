@@ -15,7 +15,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
 document.querySelector('#app').innerHTML = `
   <div>
-    <h1 class="text-3xl font-bold underline">    Hello world!  </h1>
   <div id="book">
         <div class="my-page" data-density="hard">
             Page Cover
