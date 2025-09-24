@@ -9,7 +9,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@tailwindcss/postcss": "^4.1.13",
     "@tailwindcss/vite": "^4.1.13",
+    "autoprefixer": "^10.4.21",
     "page-flip": "^2.0.7",
     "serve": "^14.2.5",
     "tailwindcss": "^4.1.13",

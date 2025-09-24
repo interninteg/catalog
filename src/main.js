@@ -14,26 +14,26 @@ document.addEventListener("DOMContentLoaded", (event) => {
 });
 
 document.querySelector('#app').innerHTML = `
-  <div>
-  <div id="book">
-        <div class="my-page" data-density="hard">
-            Page Cover
-        </div>
-        <div class="my-page">
-            Page one
-        </div>
-        <div class="my-page">
-            Page two
-        </div>
-        <div class="my-page">
-            Page three
-        </div>
-        <div class="my-page">
-            Page four
-        </div>
-        <div class="my-page" data-density="hard">
-            Last page
-        </div>
+  <div id="app" class="flex items-center justify-center min-h-screen bg-blue-500/50">
+    <div id="book">
+      <div class="my-page" data-density="hard">
+          Page Cover
+      </div>
+      <div class="my-page">
+          Page one
+      </div>
+      <div class="my-page">
+          Page two
+      </div>
+      <div class="my-page">
+          Page three
+      </div>
+      <div class="my-page">
+          Page four
+      </div>
+      <div class="my-page" data-density="hard">
+          Last page
+      </div>
     </div>
   </div>
 `

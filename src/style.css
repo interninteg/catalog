@@ -1,1 +1,11 @@
 @import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer components {
+  .my-page {
+    @apply bg-white rounded-md shadow-md p-6 flex items-center justify-center text-gray-700 font-semibold text-lg;
+  }
+}
