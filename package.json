@@ -1,0 +1,23 @@
+{
+  "name": "catalog",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/interninteg/catalog.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/interninteg/catalog/issues"
+  },
+  "homepage": "https://github.com/interninteg/catalog",
+  "dependencies": {
+    "page-flip": "^2.0.7",
+    "serve": "^14.2.5"
+  }
+}
