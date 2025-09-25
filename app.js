@@ -21,7 +21,7 @@ fastify.post('/api/catalog/generate', async (request, reply) => {
     try {
         let json = JSON.stringify(request.body);
         let catalogTemplate = path.resolve(__dirname, './catalog-template')
-        fs.writeFile(path.join(catalogTemplate, "contents.json"), json, (err) => {  //write request body to a file
+        fs.writeFile(path.join(catalogTemplate, "public/contents.json"), json, (err) => {  //write request body to a file
             if (err) {
                 reply.code(500).send({ error: 'Failed to write file' });
                 return;
