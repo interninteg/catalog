@@ -4,6 +4,8 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import fastifyStatic from '@fastify/static'
 import fs from 'fs'
+import 'dotenv/config'
+
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -12,9 +14,23 @@ const fastify = Fastify({
     logger: true
 })
 
-fastify.get('/', async (request, reply) => {
-    return { hello: 'world' }
-})
+const API_KEY = process.env.API_KEY;
+
+fastify.addHook('onRequest', async (request, reply) => {
+    // Skip auth for static and catalog HTML routes
+    if (
+        request.raw.url.startsWith('/catalogs/') &&
+        (request.method === 'GET' || request.method === 'HEAD')
+    ) {
+        return;
+    }
+    // Allow only requests with the correct API key
+    const key = request.headers['x-api-key'];
+    if (key !== API_KEY) {
+        reply.code(401).send({ error: 'Unauthorized' });
+    }
+});
+
 
 
 fastify.post('/api/catalog/generate', async (request, reply) => {
