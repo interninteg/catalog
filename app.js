@@ -20,6 +20,7 @@ fastify.get('/', async (request, reply) => {
 fastify.post('/api/catalog/generate', async (request, reply) => {
     try {
         let json = JSON.stringify(request.body);
+        let name = request.body.name || "default"  //name of the catalog to be generated
         let catalogTemplate = path.resolve(__dirname, './catalog-template')
         fs.writeFile(path.join(catalogTemplate, "public/contents.json"), json, (err) => {  //write request body to a file
             if (err) {
@@ -28,10 +29,10 @@ fastify.post('/api/catalog/generate', async (request, reply) => {
             }
         });
         await build({
-            root: catalogTemplate,    //the files vite uses to build
-            base: '/foo/',
+            root: catalogTemplate,    //vite src to build from
+            base: `/catalogs/${name}/`,
             build: {
-                outDir: '../foo/'   //from root which catalaog template go back one level and create a directoy called foo and build
+                outDir: `../catalogs/${name}`   //output dir for the build
             }
         })
         return { done: 'idk' }
@@ -41,14 +42,14 @@ fastify.post('/api/catalog/generate', async (request, reply) => {
     }
 })
 
-// serving the static output of the vite build. for now it just serves the hardocded foo directory at /foo/
+
+// serve output of vite
 fastify.register(fastifyStatic, {
-    root: path.join(__dirname, 'foo'),
-    prefix: '/foo/',
+    root: path.join(__dirname, 'catalogs'),
+    prefix: '/catalogs/',
 })
-// to actually serve and anser user request for the build we need to send index.html
-fastify.get('/foo', async (request, reply) => {
-    const indexPath = path.join(__dirname, 'foo', 'index.html');
+fastify.get(`/catalogs/:name`, async (request, reply) => {
+    const indexPath = path.join(__dirname, 'catalogs', request.params.name, 'index.html');
     const indexContent = await fs.promises.readFile(indexPath, 'utf-8');
     reply.type('text/html').send(indexContent);
 });

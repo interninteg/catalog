@@ -24,4 +24,5 @@ dist-ssr
 *.sw?
 
 #static builds
-foo
+catalogs
+catalog-template/public/
