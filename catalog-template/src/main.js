@@ -29,12 +29,16 @@ function generateHTML(json) {
 }
 
 function initPageFlip() {
-     const pageFlip = new PageFlip(document.getElementById('book'),
-        {
-            width: 400, // required parameter - base page width
-            height: 600,  // required parameter - base page height
-            showCover: true
-        });
+    const container = document.getElementById('book');
+    // Set width/height based on viewport or parent
+    const width = Math.min(window.innerWidth * 0.9, 400);
+    const height = Math.min(window.innerHeight * 0.9, 600);
+
+    const pageFlip = new PageFlip(container, {
+        width: width,
+        height: height,
+        showCover: true
+    });
     pageFlip.loadFromHTML(document.querySelectorAll('.my-page'));
 }
 

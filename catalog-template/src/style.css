@@ -9,3 +9,18 @@
     @apply bg-white rounded-md shadow-md p-6 flex items-center justify-center text-gray-700 font-semibold text-lg;
   }
 }
+
+#book {
+  width: 90vw;
+  max-width: 400px;
+  height: 80vh;
+  max-height: 600px;
+  margin: auto;
+}
+
+@media (max-width: 600px) {
+  #book {
+    max-width: 98vw;
+    max-height: 70vh;
+  }
+}
